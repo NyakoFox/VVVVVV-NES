@@ -17,7 +17,7 @@ void rainbow_color_nmi() {
             color_index = 0;
         }
     }
-    
+
     PPU_ADDR = 0x3F; PPU_ADDR = 0x03; // bg palette 1 color 3
 
     if(JOY1_HELD & BUTTON_UP) { // show white when pressing UP

@@ -10,13 +10,13 @@
 
 
 # name of the output rom, eg "game.nes"
-TITLE := game
+TITLE := VVVVVV
 
 # Build supports C and ASM out of the box
 C_SUPPORT := 1 # Comment out this line to disable C support
 
 # Include these community libraries in your project
-MODULES = EASY_JOY
+MODULES := easy_joy famistudio rapidfire
 # IRQ_SCREEN_SCROLL - Schedule a horizontal scroll split IRQ
 # SPRITE_0_SCREEN_SCROLL - Helper function for scheduling a scroll split with sprite 0 (can have CPU cost) (todo)
 
@@ -32,7 +32,7 @@ OPTIONS := MMC3_1K_SPRITES C_NMI_HOOK
 # MMC3_1K_BACKGROUNDS - MMC3 CHR A12 inversion = 1, 1kx4 background banks, 2kx2 sprite banks
 
 # Select the mapper you want to use for your default builds
-MAPPER := nrom
+MAPPER := mmc5
 # nrom, uxrom, mmc1, mmc3, mmc5, fme-7, vrc6, vrc7, n163, (gtrom)
 # nrom - the simplest mapper, with no prg or chr banks and no additional features
 # uxrom - common family of mappers with one window of bankable PRG
@@ -45,11 +45,14 @@ MAPPER := nrom
 # n163 - mapper with three windows of bankable PRG, twelve windows of bankable CHR, and expansion audio
 # gtrom - homebrew mapper with bankable PRG and CHR, not yet supported
 
-ALL_MAPPERS := nrom uxrom gtrom mmc1 mmc3 mmc5 fme-7 vrc6 vrc7 n163
+# ALL_MAPPERS := nrom uxrom gtrom mmc1 mmc3 mmc5 fme-7 vrc6 vrc7 n163
 # when using build-all, build all of these mappers
 # recommended: 
 #   leave this list alone until you no longer wish to abandon compatability with a particular mapper
 #   for instance, once you start using PRG banking, remove nrom
+
+# Ok so... we're using MMC5 for the music, so we can't use anything else
+ALL_MAPPERS := mmc5
 
 # For mappers with fixed mirroring, choose horizontal or vertical
 FIXED_MIRRORING = vertical
