@@ -63,7 +63,7 @@ clear_zp_stack_loop:
 
 .ifdef BANK_SUPPORT
 .importzp prgbank
-    lda #$00
+    lda #$80
     sta prgbank
 .endif
 

@@ -140,9 +140,9 @@ endif
 
 ifdef C_SUPPORT
 	CAOPT := -g -D C_SUPPORT=1 $(LIBOPTS) -D FAMISTUDIO_CFG_C_BINDINGS=1 $(OPTIONFLAGS)
-	CCOPT := -g -Oirs --add-source $(LIBOPTS) $(OPTIONFLAGS)
+	CCOPT := -g -Oirs -Cl --add-source $(LIBOPTS) $(OPTIONFLAGS)
 	LIBRARIES := nes.lib
-	
+
 	CFILES := $(wildcard $(SOURCEDIR)/*.c)
 	CASM := $(call SourceToBuildPath,$(CFILES:.c=.s))
 	COBJECTS := $(call SourceToBuildPath,$(CFILES:.c=.o))
