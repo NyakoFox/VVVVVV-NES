@@ -7,6 +7,9 @@
 #include "rapidfire.h"
 #include "easy_joy.h"
 
+unsigned char on_ground = 0;
+unsigned char a_pressed = 0;
+
 player_t player;
 
 static const BOOL solidity_map[] = {
@@ -141,10 +144,26 @@ void player_input(void)
         }
     }
 
-    if (player_onground())
+    if (JOY1_PRESSED & BUTTON_A)
     {
-        if (JOY1_PRESSED & BUTTON_A)
+        a_pressed = 9;
+    }
+
+    if (JOY1_RELEASED & BUTTON_A)
+    {
+        a_pressed = 0;
+    }
+
+    if (a_pressed)
+    {
+        --a_pressed;
+    }
+
+    if (on_ground)
+    {
+        if (a_pressed)
         {
+            a_pressed = 0;
             player.flipped ^= 1;
             player.vy = flip_velocity[player.flipped];
         }
@@ -265,21 +284,26 @@ static signed char gravity[] = { 1, -1 };
 
 void player_update(void)
 {
-    const BOOL on_ground = player_onground();
+    const BOOL currently_on_ground = player_onground();
 
-    if (!on_ground)
+    if (!currently_on_ground)
     {
         player.vy += gravity[player.flipped];
+        if (on_ground)
+        {
+            --on_ground;
+        }
     }
     else
     {
         player.vy = 0;
+        on_ground = 4;
     }
 
     apply_momentum();
     check_blocks();
 
-    if (on_ground)
+    if (currently_on_ground)
     {
         if (player.vx != 0)
         {

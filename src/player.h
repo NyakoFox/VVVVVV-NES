@@ -18,6 +18,9 @@ typedef struct {
 
 extern player_t player;
 
+extern unsigned char on_ground;
+extern unsigned char a_pressed;
+
 BOOL player_onground(void);
 
 void player_respawn(void);
